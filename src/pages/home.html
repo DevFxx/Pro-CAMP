@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR" translate="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pro-Camp - Times Esportivos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="../../global.css">
+  <style>
+    /* Reset e Estilos Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    /* Header */
+    .main-header {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(5px);
+      border-bottom: 1px solid #333;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #4CAF50;
+      text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+    }
+
+    .header-content button {
+      background: transparent;
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+    }
+
+    .header-content button:hover {
+      color: #4CAF50;
+      transform: translateY(-2px);
+    }
+
+    /* Conteúdo Principal */
+    main {
+      flex: 1;
+      padding: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 1.5rem 0;
+      font-size: 1.8rem;
+      color: #4CAF50;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #4CAF50;
+      margin: 0.5rem auto;
+      border-radius: 3px;
+    }
+
+    .teams-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 0;
+    }
+
+    @media (min-width: 600px) {
+      .teams-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .team-card {
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .team-image {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+    }
+
+    .team-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .team-card:hover .team-image img {
+      transform: scale(1.05);
+    }
+
+    .team-info {
+      padding: 1.2rem;
+    }
+
+    .team-name {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #4CAF50;
+    }
+
+    .team-coach {
+      color: #aaa;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .view-more-btn {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .view-more-btn:hover {
+      background: #3e8e41;
+      transform: translateY(-2px);
+    }
+
+    .view-more-btn i {
+      transition: transform 0.3s ease;
+    }
+
+    .view-more-btn:hover i {
+      transform: translateX(3px);
+    }
+
+    /* Footer */
+    .main-footer {
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 1.2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-top: auto;
+    }
+
+    /* Efeitos de Carregamento */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .teams-list li {
+      animation: fadeIn 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    .teams-list li:nth-child(1) { animation-delay: 0.1s; }
+    .teams-list li:nth-child(2) { animation-delay: 0.2s; }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-content">
+      <h1 class="logo">Pro-Camp</h1>
+      <button>Tabela</button>
+      <button>Jogadores</button>
+      <button>Prêmios</button>
+    </div>
+  </header>
+
+  <main class="teams-container">
+    <h2 class="section-title">Nossos Times</h2>
+    <ul class="teams-list">
+      <li class="team-card">
+        <article>
+          <div class="team-image">
+            <img
+              src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="Foto do Time A"
+              loading="lazy"
+            />
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">Time A</h3>
+            <p class="team-coach">Treinador: Carlos Silva</p>
+            <button class="view-more-btn">
+              Ver mais <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </article>
+      </li>
+
+      <li class="team-card">
+        <article>
+          <div class="team-image">
+            <img
+              src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="Foto do Time B"
+              loading="lazy"
+            />
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">Time B</h3>
+            <p class="team-coach">Treinadora: Ana Oliveira</p>
+            <button class="view-more-btn">
+              Ver mais <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </article>
+      </li>
+    </ul>
+  </main>
+
+  <footer class="main-footer">
+    <p>&copy; 2025 Pro-Camp. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
