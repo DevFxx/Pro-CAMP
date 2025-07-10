@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pro-Camp - Times Esportivos</title>
+    <title>Pro-Camp - Jogadores</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
     <link rel="stylesheet" href="../../global.css" />
     <style>
-      /* Reset e Estilos Base */
       * {
         margin: 0;
         padding: 0;
@@ -18,7 +17,12 @@
         font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
           "Helvetica Neue", sans-serif;
       }
-      /* Header */
+
+      body {
+        color: #ffffff;
+        min-height: 100vh;
+      }
+
       .main-header {
         background-color: rgba(0, 0, 0, 0.8);
         padding: 1rem;
@@ -61,9 +65,7 @@
         transform: translateY(-2px);
       }
 
-      /* Conteúdo Principal */
       main {
-        flex: 1;
         padding: 1.5rem;
         max-width: 1200px;
         margin: 0 auto;
@@ -88,7 +90,7 @@
         border-radius: 3px;
       }
 
-      .teams-list {
+      .players-list {
         list-style: none;
         display: grid;
         grid-template-columns: 1fr;
@@ -97,12 +99,18 @@
       }
 
       @media (min-width: 600px) {
-        .teams-list {
+        .players-list {
           grid-template-columns: repeat(2, 1fr);
         }
       }
 
-      .team-card {
+      @media (min-width: 900px) {
+        .players-list {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .player-card {
         background: rgba(30, 30, 30, 0.8);
         border-radius: 10px;
         overflow: hidden;
@@ -110,74 +118,72 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       }
 
-      .team-card:hover {
+      .player-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
       }
 
-      .team-image {
+      .player-image {
         width: 100%;
-        height: 180px;
+        height: 200px;
         overflow: hidden;
       }
 
-      .team-image img {
+      .player-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.5s ease;
       }
 
-      .team-card:hover .team-image img {
+      .player-card:hover .player-image img {
         transform: scale(1.05);
       }
 
-      .team-info {
+      .player-info {
         padding: 1.2rem;
       }
 
-      .team-name {
+      .player-name {
         font-size: 1.3rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
         color: #4caf50;
       }
 
-      .team-coach {
-        color: #aaa;
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
-      }
-
-      .view-more-btn {
-        background: #4caf50;
-        color: white;
-        border: none;
-        padding: 0.6rem 1.2rem;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: 600;
+      .player-team {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        transition: all 0.3s ease;
-        width: 100%;
-        justify-content: center;
+        margin-bottom: 1rem;
+        color: #aaa;
       }
 
-      .view-more-btn:hover {
-        background: #3e8e41;
-        transform: translateY(-2px);
+      .team-logo {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
       }
 
-      .view-more-btn i {
-        transition: transform 0.3s ease;
+      .player-stats {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0.8rem;
       }
 
-      .view-more-btn:hover i {
-        transform: translateX(3px);
+      .stat {
+        text-align: center;
       }
 
-      /* Footer */
+      .stat-value {
+        font-weight: 700;
+        color: #4caf50;
+      }
+
+      .stat-label {
+        font-size: 0.7rem;
+        color: #aaa;
+      }
+
       .main-footer {
         background-color: rgba(0, 0, 0, 0.9);
         padding: 1.2rem;
@@ -185,9 +191,30 @@
         font-size: 0.9rem;
         color: #aaa;
         margin-top: auto;
+      } /* ADICIONE ISSO AO SEU CSS EXISTENTE */
+
+      .header-content {
+        flex-wrap: wrap;
       }
 
-      /* Efeitos de Carregamento */
+      .header-content button {
+        flex: 1 1 auto;
+        text-align: center;
+      }
+
+      /* Garante que botões não estourem em telas pequenas */
+      .header-content h1 {
+        flex: 1 1 100%;
+        margin-bottom: 0.5rem;
+        text-align: center;
+      }
+
+      main,
+      .players-list,
+      .player-info {
+        word-break: break-word;
+      }
+
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -199,82 +226,140 @@
         }
       }
 
-      .teams-list li {
+      .players-list li {
         animation: fadeIn 0.5s ease forwards;
         opacity: 0;
       }
 
-      .teams-list li:nth-child(1) {
+      .players-list li:nth-child(1) {
         animation-delay: 0.1s;
       }
-      .teams-list li:nth-child(2) {
+      .players-list li:nth-child(2) {
         animation-delay: 0.2s;
+      }
+      .players-list li:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .players-list li:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .players-list li:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      .players-list li:nth-child(6) {
+        animation-delay: 0.6s;
       }
     </style>
   </head>
   <body>
     <header class="main-header">
       <div class="header-content">
-        <h1 class="logo">Pro-Camp</h1>
+        <h1 class="logo" onclick="menu()">Pro-Camp</h1>
         <button onclick="tabela()">Tabela</button>
         <button onclick="players()">Jogadores</button>
       </div>
     </header>
 
-    <main class="teams-container">
-      <h2 class="section-title">Nossos Times</h2>
-      <ul class="teams-list">
-        <li class="team-card">
+    <main>
+      <h2 class="section-title">Jogadores</h2>
+
+      <ul class="players-list">
+        <li class="player-card">
           <article>
-            <div class="team-image">
+            <div class="player-image">
               <img
                 src="../../public/fxx.jpeg"
-                alt="Foto do Time B"
+                alt="Jogador 1"
                 loading="lazy"
               />
             </div>
-            <div class="team-info">
-              <h3 class="team-name">Fxx</h3>
-              <p class="team-coach">Treinadora: Samuel Lucas</p>
-              <button class="view-more-btn">
-                Ver mais <i class="fas fa-chevron-right"></i>
-              </button>
+            <div class="player-info">
+              <h3 class="player-name">Samuel Lucas</h3>
+              <div class="player-team">
+                <img
+                  src="../../public/fxx.jpeg"
+                  alt="Time A"
+                  class="team-logo"
+                />
+                <span>Fxx</span>
+              </div>
+
+              <div class="player-stats">
+                <div class="stat">
+                  <div class="stat-value">0</div>
+                  <div class="stat-label">Jogos</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">0</div>
+                  <div class="stat-label">Vitórias</div>
+                </div>
+              </div>
             </div>
           </article>
         </li>
-        <li class="team-card">
+        <li class="player-card">
           <article>
-            <div class="team-image">
+            <div class="player-image">
               <img
                 src="../../public/s.s.jpeg"
-                alt="Foto do Time A"
+                alt="Jogador 1"
                 loading="lazy"
               />
             </div>
-            <div class="team-info">
-              <h3 class="team-name">Soldados.Son</h3>
-              <p class="team-coach">Treinador: Alex</p>
-              <button class="view-more-btn">
-                Ver mais <i class="fas fa-chevron-right"></i>
-              </button>
+            <div class="player-info">
+              <h3 class="player-name">Alex</h3>
+              <div class="player-team">
+                <img
+                  src="../../public/s.s.jpeg"
+                  alt="Time A"
+                  class="team-logo"
+                />
+                <span>Alex</span>
+              </div>
+
+              <div class="player-stats">
+                <div class="stat">
+                  <div class="stat-value">0</div>
+                  <div class="stat-label">Jogos</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">0</div>
+                  <div class="stat-label">Vitórias</div>
+                </div>
+              </div>
             </div>
           </article>
         </li>
-        <li class="team-card">
+        <li class="player-card">
           <article>
-            <div class="team-image">
+            <div class="player-image">
               <img
                 src="../../public/night.jpeg"
-                alt="Foto do Time A"
+                alt="Jogador 1"
                 loading="lazy"
               />
             </div>
-            <div class="team-info">
-              <h3 class="team-name">Night Fury</h3>
-              <p class="team-coach">Treinador: Maxwell</p>
-              <button class="view-more-btn">
-                Ver mais <i class="fas fa-chevron-right"></i>
-              </button>
+            <div class="player-info">
+              <h3 class="player-name">Maxwell</h3>
+              <div class="player-team">
+                <img
+                  src="../../public/night.jpeg"
+                  alt="Time A"
+                  class="team-logo"
+                />
+                <span>Alex</span>
+              </div>
+
+              <div class="player-stats">
+                <div class="stat">
+                  <div class="stat-value">0</div>
+                  <div class="stat-label">Jogos</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">0</div>
+                  <div class="stat-label">Vitórias</div>
+                </div>
+              </div>
             </div>
           </article>
         </li>
@@ -290,6 +375,9 @@
       }
       function players() {
         window.location.href = "./jogadores.html";
+      }
+      function menu() {
+        window.location.href = "./home.html";
       }
     </script>
   </body>
